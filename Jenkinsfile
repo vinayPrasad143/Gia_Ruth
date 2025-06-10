@@ -8,7 +8,7 @@ pipeline {
 
     environment {
         REPORT_PATH = "**/target/cucumber-reports/*.json"
-        EMAIL_RECIPIENTS = "yourteam@example.com"
+        EMAIL_RECIPIENTS = "vinayprasad@graphenesvc.com"
     }
 
     stages {
