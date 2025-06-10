@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven'  // Make sure Maven is configured in Jenkins Global Tools
-        jdk 'JDK17'    // Configure JDK 17 or whichever you use
+        maven 'Maven'   // Make sure these are configured in Jenkins
+        jdk 'JDK17'     // Rename if needed in Global Tool Configuration
     }
 
     environment {
@@ -31,6 +31,7 @@ pipeline {
                          sortingMethod: 'ALPHABETICAL'
             }
         }
+
         stage('Archive Extent Report') {
             steps {
                 archiveArtifacts artifacts: 'target/extent-report/**', allowEmptyArchive: true
@@ -45,14 +46,15 @@ pipeline {
                 subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: """<p>✅ The build succeeded!</p>
                          <p> See the <a href="${env.BUILD_URL}cucumber-html-reports/overview-features.html">Cucumber Report</a></p>
-                          <p>📝 <b>Extent Report:</b> <a href="${env.BUILD_URL}artifact/target/extent-report/index.html">View Extent Report</a></p>
-                          <p>📝 <b>Cucumber Report:</b> <a href="${env.BUILD_URL}cucumber-html-reports/overview-features.html">View Cucumber Report</a></p>""",
+                         <p>📝 <b>Extent Report:</b> <a href="${env.BUILD_URL}artifact/target/extent-report/index.html">View Extent Report</a></p>
+                         <p>📝 <b>Cucumber Report:</b> <a href="${env.BUILD_URL}cucumber-html-reports/overview-features.html">View Cucumber Report</a></p>""",
                 to: "${EMAIL_RECIPIENTS}",
                 mimeType: 'text/html'
             )
         }
+
         failure {
-            echo '❌ Build Failed. Sending Email...'
+            echo '❌ Build Failed. Sending Email and Retrying...'
             emailext (
                 subject: "FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: """<p>❌ The build failed!</p>
@@ -60,14 +62,13 @@ pipeline {
                 to: "${EMAIL_RECIPIENTS}",
                 mimeType: 'text/html'
             )
-        }
-        always {
-            cleanWs()
-        }
-        failure {
             retry(2) {
                 sh 'mvn clean test'
             }
+        }
+
+        always {
+            cleanWs()
         }
     }
 }
