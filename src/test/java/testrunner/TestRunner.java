@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
         features = "ruthfeatures",
         glue = "ruthstepdef",
         dryRun = false,
-//        tags = "@advancedanalysis",
+        tags = "@advancedanalysis",
         plugin = {"pretty",
 //               "io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm",
                 "html:target/cucumber-reports.html",

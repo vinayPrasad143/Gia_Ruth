@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         maven 'Maven'   // Make sure these are configured in Jenkins
-        jdk 'JDK17'     // Rename if needed in Global Tool Configuration
+        jdk 'Java17'     // Rename if needed in Global Tool Configuration
     }
 
     environment {
@@ -63,7 +63,7 @@ pipeline {
                 mimeType: 'text/html'
             )
             retry(2) {
-                sh 'mvn clean test'
+                bat 'mvn clean test'
             }
         }
 
