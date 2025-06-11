@@ -68,7 +68,7 @@ pipeline {
         }
 
         always {
-            cleanWs()
+            cleanWs(deleteDirs: true, notFailBuild: true)
         }
     }
 }
