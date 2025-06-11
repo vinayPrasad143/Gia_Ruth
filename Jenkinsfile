@@ -68,10 +68,7 @@ pipeline {
         }
 
         always {
-            // never fail build because cleanup can’t wipe files
-                  catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    cleanWs deleteDirs: true, disableDeferredWipe out: true
-                  }
+            cleanWs()
         }
     }
 }
