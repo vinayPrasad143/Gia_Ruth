@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
         dryRun = false,
         tags = "@login",
         plugin = { "pretty", // Human-readable console output
-                "html:target/cucumber-reports.html", // Simple HTML report (optional)
+                "html:target/cucumber-html-reports/overview-features.html", // Simple HTML report (optional)
                 "json:target/cucumber-json/cucumber.json", // Needed for Jenkins' Cucumber plugin
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:", // For Extent Report
                 "rerun:target/failed_scenarios.txt" // For reruns
