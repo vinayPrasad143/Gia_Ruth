@@ -7,7 +7,8 @@ pipeline {
     }
 
     environment {
-        REPORT_PATH = "**/target/cucumber-reports/*.json"
+        //REPORT_PATH = "**/target/cucumber-reports/*.json"
+        REPORT_PATH = "**/target/cucumber-json/*.json"
         EMAIL_RECIPIENTS = "vinayprasad@graphenesvc.com"
     }
 
