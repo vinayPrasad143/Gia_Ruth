@@ -13,7 +13,8 @@ import org.testng.annotations.Test;
         plugin = {"pretty",
 //               "io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm",
                 "html:target/cucumber-reports.html",
-                "json:target/cucumber.json",
+                "json:target/cucumber-json/cucumber.json",
+//                "json:target/cucumber.json",
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
                 "rerun:target/failed_scenarios.txt"
         },
