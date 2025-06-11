@@ -10,13 +10,11 @@ import org.testng.annotations.Test;
         glue = "ruthstepdef",
         dryRun = false,
         tags = "@login",
-        plugin = {"pretty",
-//               "io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm",
-                "html:target/cucumber-reports.html",
-                "json:target/cucumber-json/cucumber.json",
-//                "json:target/cucumber.json",
-                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
-                "rerun:target/failed_scenarios.txt"
+        plugin = { "pretty", // Human-readable console output
+                "html:target/cucumber-reports.html", // Simple HTML report (optional)
+                "json:target/cucumber-json/cucumber.json", // Needed for Jenkins' Cucumber plugin
+                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:", // For Extent Report
+                "rerun:target/failed_scenarios.txt" // For reruns
         },
         monochrome = true
 
