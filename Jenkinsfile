@@ -8,7 +8,7 @@ pipeline {
 
     environment {
         //REPORT_PATH = "**/target/cucumber-reports/*.json"
-        REPORT_PATH = "**/target/cucumber-json/*.json"
+        REPORT_PATH = "**/target/cucumber-json/cucumber.json"
         EMAIL_RECIPIENTS = "vinayprasad@graphenesvc.com"
     }
 
@@ -35,7 +35,7 @@ pipeline {
 
         stage('Archive Extent Report') {
             steps {
-                archiveArtifacts artifacts: 'target/extent-report/**', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'target/ExtentReport/SparkReport.html', allowEmptyArchive: true
             }
         }
     }
@@ -47,7 +47,7 @@ pipeline {
                 subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: """<p>✅ The build succeeded!</p>
                          <p> See the <a href="${env.BUILD_URL}cucumber-html-reports/overview-features.html">Cucumber Report</a></p>
-                         <p>📝 <b>Extent Report:</b> <a href="${env.BUILD_URL}artifact/target/extent-report/index.html">View Extent Report</a></p>
+                         <p>📝 <b>Extent Report:</b> <a href="${env.BUILD_URL}artifact/target/ExtentReport/SparkReport.html">View Extent Report</a></p>
                          <p>📝 <b>Cucumber Report:</b> <a href="${env.BUILD_URL}cucumber-html-reports/overview-features.html">View Cucumber Report</a></p>""",
                 to: "${EMAIL_RECIPIENTS}",
                 mimeType: 'text/html'
