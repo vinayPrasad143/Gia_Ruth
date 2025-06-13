@@ -69,7 +69,12 @@ pipeline {
         }
 
         always {
-            cleanWs()
+            emailext (
+                        to: 'vinayprasad@graphenesvc.com',
+                        subject: "Test: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                        body: "Build finished. View results: ${env.BUILD_URL}",
+                        attachLog: true
+                    )
         }
     }
 }
