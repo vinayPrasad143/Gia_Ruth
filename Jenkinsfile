@@ -9,7 +9,7 @@ pipeline {
     environment {
         //REPORT_PATH = "**/target/cucumber-reports/*.json"
         REPORT_PATH = "**/target/cucumber-json/cucumber.json"
-        EMAIL_RECIPIENTS = "vinayprasad@graphenesvc.com"
+        EMAIL_RECIPIENTS = "vinayprasad.testy@gmail.com"
     }
 
     stages {
@@ -70,7 +70,7 @@ pipeline {
 
         always {
             emailext (
-                        to: 'vinayprasad@graphenesvc.com',
+                        to: "${EMAIL_RECIPIENTS}",
                         subject: "Test: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                         body: "Build finished. View results: ${env.BUILD_URL}",
                         attachLog: true
