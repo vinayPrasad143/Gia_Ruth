@@ -26,7 +26,7 @@ pipeline {
                 """,
                 recipientProviders: [[$class: 'DevelopersRecipientProvider']]
                 to: "${EMAIL_RECIPIENTS}",
-                mimeType: 'text/html',
+                mimeType: 'text/html'
 
             )
         }
