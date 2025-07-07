@@ -17,15 +17,17 @@ pipeline {
     post {
         always {
             emailext (
-                to: "${EMAIL_RECIPIENTS}",
+
                 subject: "Jenkins Email Test: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """\
+                body: """<p>Hi,</p>
                     <p>This is a test email from Jenkins pipeline.</p>
                     <p><b>Job:</b> ${env.JOB_NAME}</p>
                     <p><b>Build:</b> <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
                 """,
-                mimeType: 'text/html',
                 recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+                to: "${EMAIL_RECIPIENTS}",
+                mimeType: 'text/html',
+
             )
         }
     }
