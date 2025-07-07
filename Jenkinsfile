@@ -24,10 +24,9 @@ pipeline {
                     <p><b>Job:</b> ${env.JOB_NAME}</p>
                     <p><b>Build:</b> <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
                 """,
-                recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+                recipientProviders: [[$class: 'DevelopersRecipientProvider']],
                 to: "${EMAIL_RECIPIENTS}",
                 mimeType: 'text/html'
-
             )
         }
     }
