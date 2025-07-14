@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
         features = "ruthfeatures",
         glue = "ruthstepdef",
         dryRun = false,
-        tags = "@login",
+        tags = "@system_test",
         plugin = { "pretty", // Human-readable console output
                 "html:target/cucumber-html-reports/overview-features.html", // Simple HTML report (optional)
                 "json:target/cucumber-json/cucumber.json", // Needed for Jenkins' Cucumber plugin
