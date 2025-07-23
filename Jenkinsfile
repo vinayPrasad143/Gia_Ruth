@@ -21,7 +21,7 @@ pipeline {
 
         stage('Build and Execute Tests') {
             steps {
-                sh 'mvn clean test'
+                bat 'mvn clean test'
             }
         }
 
