@@ -50,7 +50,7 @@ pipeline {
                          <p>📝 <b>Extent Report:</b> <a href="${env.BUILD_URL}artifact/target/ExtentReport/SparkReport.html">View Extent Report</a></p>
                          <p>📝 <b>Cucumber Report:</b> <a href="${env.BUILD_URL}cucumber-html-reports/overview-features.html">View Cucumber Report</a></p>""",
                 to: "${EMAIL_RECIPIENTS}",
-                mimeType: 'text/html',
+                mimeType: 'text/html; charset=UTF-8',
                 recipientProviders: [[$class: 'DevelopersRecipientProvider']]
             )
         }
@@ -62,7 +62,7 @@ pipeline {
                 body: """<p>❌ The build failed!</p>
                          <p>See <a href="${env.BUILD_URL}console">Console Output</a> for more details.</p>""",
                 to: "${EMAIL_RECIPIENTS}",
-                mimeType: 'text/html',
+                mimeType: 'text/html; charset=UTF-8',
                 recipientProviders: [[$class: 'DevelopersRecipientProvider']]
             )
             retry(2) {
